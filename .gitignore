@@ -1,0 +1,11 @@
+build/
+.pub
+.packages
+doc/api/
+pubspec.lock
+tool/src/couchbase_extension/DerivedData
+tool/src/sample*
+tool/src/libsample*
+tool/src/test_sample*
+tool/src/main.cc
+tool/src/*.out

@@ -1,23 +1,4 @@
-/* -*- Mode: C; tab-width: 4; c-basic-offset: 4; indent-tabs-mode: nil -*- */
-/*
-*     Copyright 2012 Couchbase, Inc.
-*
-*   Licensed under the Apache License, Version 2.0 (the "License");
-*   you may not use this file except in compliance with the License.
-*   You may obtain a copy of the License at
-*
-*       http://www.apache.org/licenses/LICENSE-2.0
-*
-*   Unless required by applicable law or agreed to in writing, software
-*   distributed under the License is distributed on an "AS IS" BASIS,
-*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-*   See the License for the specific language governing permissions and
-*   limitations under the License.
-*/
-
 /**
- * gcc -levent -lcouchbase main.c
- *
  * # perform STORE and 20 iterations of GET commands with interval 3 seconds
  * ./a.out couchbase://localhost password Administrator 20 3
  */
@@ -25,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <map>
 #include <libcouchbase/couchbase.h>
 #include <libcouchbase/api3.h>
 #include <event2/event.h>
@@ -42,24 +24,27 @@ int nresp = 1;
 int interval = 0;
 struct event *timer = NULL;
 
+bool initialised = false;
+lcb_io_opt_t ioops;
+
 static void bootstrap_callback(lcb_t instance, lcb_error_t err)
 {
     lcb_CMDSTORE cmd = {0};
     if (err != LCB_SUCCESS) {
         fprintf(stderr, "ERROR: %s\n", lcb_strerror(instance, err));
-        exit(EXIT_FAILURE);
+        // exit(EXIT_FAILURE);
     }
     printf("successfully bootstrapped\n");
     fflush(stdout);
-    /* Since we've got our configuration, let's go ahead and store a value */
-    LCB_CMD_SET_KEY(&cmd, key, nkey);
-    LCB_CMD_SET_VALUE(&cmd, val, nval);
-    cmd.operation = LCB_SET;
-    err = lcb_store3(instance, NULL, &cmd);
-    if (err != LCB_SUCCESS) {
-        fprintf(stderr, "Failed to set up store request: %s\n", lcb_strerror(instance, err));
-        exit(EXIT_FAILURE);
-    }
+    // /* Since we've got our configuration, let's go ahead and store a value */
+    // LCB_CMD_SET_KEY(&cmd, key, nkey);
+    // LCB_CMD_SET_VALUE(&cmd, val, nval);
+    // cmd.operation = LCB_SET;
+    // err = lcb_store3(instance, NULL, &cmd);
+    // if (err != LCB_SUCCESS) {
+    //     fprintf(stderr, "Failed to set up store request: %s\n", lcb_strerror(instance, err));
+    //     exit(EXIT_FAILURE);
+    // }
 }
 
 static void get_callback(lcb_t instance, int cbtype, const lcb_RESPBASE *rb)
@@ -245,30 +230,33 @@ Dart_Handle HandleError(Dart_Handle handle) {
  return handle;
 }
 
-void SystemRand(Dart_NativeArguments arguments) {
-	Dart_EnterScope();
-	Dart_Handle result = HandleError(Dart_NewInteger(rand()));
-	Dart_SetReturnValue(arguments, result);
-	Dart_ExitScope();
-}
+/**************************
+ *  Random Array Test Start
+ **************************/
+// void SystemRand(Dart_NativeArguments arguments) {
+// 	Dart_EnterScope();
+// 	Dart_Handle result = HandleError(Dart_NewInteger(rand()));
+// 	Dart_SetReturnValue(arguments, result);
+// 	Dart_ExitScope();
+// }
 
-void SystemSrand(Dart_NativeArguments arguments) {
-	Dart_EnterScope();
-	bool success = false;
-	Dart_Handle seed_object = HandleError(Dart_GetNativeArgument(arguments, 0));
-	if (Dart_IsInteger(seed_object)) {
-		bool fits;
-		HandleError(Dart_IntegerFitsIntoInt64(seed_object, &fits));
-		if (fits) {
-			int64_t seed;
-			HandleError(Dart_IntegerToInt64(seed_object, &seed));
-			srand(static_cast<unsigned>(seed));
-			success = true;
-		}
-	}
-	Dart_SetReturnValue(arguments, HandleError(Dart_NewBoolean(success)));
-	Dart_ExitScope();
-}
+// void SystemSrand(Dart_NativeArguments arguments) {
+// 	Dart_EnterScope();
+// 	bool success = false;
+// 	Dart_Handle seed_object = HandleError(Dart_GetNativeArgument(arguments, 0));
+// 	if (Dart_IsInteger(seed_object)) {
+// 		bool fits;
+// 		HandleError(Dart_IntegerFitsIntoInt64(seed_object, &fits));
+// 		if (fits) {
+// 			int64_t seed;
+// 			HandleError(Dart_IntegerToInt64(seed_object, &seed));
+// 			srand(static_cast<unsigned>(seed));
+// 			success = true;
+// 		}
+// 	}
+// 	Dart_SetReturnValue(arguments, HandleError(Dart_NewBoolean(success)));
+// 	Dart_ExitScope();
+// }
 
 uint8_t* randomArray(int seed, int length) {
 	if (length <= 0 || length > 10000000) {
@@ -333,6 +321,150 @@ void randomArrayServicePort(Dart_NativeArguments arguments) {
 	Dart_ExitScope();
 }
 
+/**************************
+ *  Init Event Loop
+ **************************/
+
+void initEventLoop() {
+	if (initialised) {
+		return;
+	}
+	/* Run the event loop */
+	struct event_base *evbase = event_base_new();
+	ioops = create_libevent_io_ops(evbase);
+	initialised = true;
+	event_base_loop(evbase, EVLOOP_NO_EXIT_ON_EMPTY);
+	lcb_destroy_io_ops(ioops);
+	event_base_free(evbase);
+}
+
+void wrappedInitEventLoop(Dart_Port dest_port_id,
+	Dart_CObject* message) {
+	Dart_Port reply_port_id = ILLEGAL_PORT;
+	if (message->type == Dart_CObject_kArray &&
+		1 == message->value.as_array.length) {
+		// Use .as_array and .as_int32 to access the data in the Dart_CObject.
+		Dart_CObject* param0 = message->value.as_array.values[0];
+		if (param0->type == Dart_CObject_kSendPort) {
+			reply_port_id = param0->value.as_send_port.id;
+			
+            Dart_CObject result;
+            result.type = Dart_CObject_kBool;
+            result.value.as_bool = true;
+            
+            Dart_PostCObject(reply_port_id, &result);
+			initEventLoop();
+            return;
+		}
+	}
+	Dart_CObject result;
+	result.type = Dart_CObject_kBool;
+    result.value.as_bool = false;
+	Dart_PostCObject(reply_port_id, &result);
+}
+
+void initEventLoopServicePort(Dart_NativeArguments arguments) {
+	Dart_EnterScope();
+	Dart_SetReturnValue(arguments, Dart_Null());
+	Dart_Port service_port =
+		Dart_NewNativePort("InitEventLoop", wrappedInitEventLoop, true);
+	if (service_port != ILLEGAL_PORT) {
+		Dart_Handle send_port = HandleError(Dart_NewSendPort(service_port));
+		Dart_SetReturnValue(arguments, send_port);
+	}
+	Dart_ExitScope();
+}
+
+/**************************
+ *  Connect to bucket
+ **************************/
+bool connectToBucket(char* connstr, char* username, char* password) {
+	lcb_t instance;
+    lcb_error_t error;
+    struct lcb_create_st copts;
+
+    memset(&copts, 0, sizeof(copts));
+
+    copts.version = 3;
+	copts.v.v3.connstr = connstr;
+	copts.v.v3.passwd = password;
+	copts.v.v3.username = username;    
+    copts.v.v3.io = ioops;
+    error = lcb_create(&instance, &copts);
+
+    if (error != LCB_SUCCESS) {
+        fprintf(stderr, "Failed to create a libcouchbase instance: %s\n", lcb_strerror(NULL, error));
+        return false;
+    }
+
+    /* Set up the callbacks */
+//    lcb_install_callback3(instance, LCB_CALLBACK_GET, get_callback);
+//    lcb_install_callback3(instance, LCB_CALLBACK_STORE, store_callback);
+
+    if ((error = lcb_connect(instance)) != LCB_SUCCESS) {
+        fprintf(stderr, "Failed to connect libcouchbase instance: %s\n", lcb_strerror(NULL, error));
+        lcb_destroy(instance);
+		return false;
+    }
+
+	lcb_wait(instance);
+    error = lcb_get_bootstrap_status(instance);
+    if (error != LCB_SUCCESS) {
+        fprintf(stderr, "ERROR: %s\n", lcb_strerror(instance, error));
+		lcb_destroy(instance);
+		return false;
+    }
+
+//    printf("successfully bootstrapped\n");
+    fflush(stdout);
+
+	return true;
+}
+
+void wrappedConnectToBucket(Dart_Port dest_port_id,
+	Dart_CObject* message) {
+	Dart_Port reply_port_id = ILLEGAL_PORT;
+	if (message->type == Dart_CObject_kArray &&
+		4 == message->value.as_array.length) {
+		// Use .as_array and .as_int32 to access the data in the Dart_CObject.
+		Dart_CObject* param0 = message->value.as_array.values[0];
+		Dart_CObject* param1 = message->value.as_array.values[1];
+		Dart_CObject* param2 = message->value.as_array.values[2];
+		Dart_CObject* param3 = message->value.as_array.values[3];
+		if (param0->type == Dart_CObject_kString &&
+			param1->type == Dart_CObject_kString &&
+            param2->type == Dart_CObject_kString &&
+			param3->type == Dart_CObject_kSendPort) {
+            char* connstr = param0->value.as_string;
+            char* username = param1->value.as_string;
+            char* password = param2->value.as_string;
+			reply_port_id = param3->value.as_send_port.id;
+
+			Dart_CObject result;
+            result.type = Dart_CObject_kBool;
+            result.value.as_bool = connectToBucket(connstr, username, password);
+			Dart_PostCObject(reply_port_id, &result);
+			return;
+		}
+	}
+	Dart_CObject result;
+	result.type = Dart_CObject_kBool;
+    result.value.as_bool = false;
+	Dart_PostCObject(reply_port_id, &result);
+}
+
+void connectToBucketServicePort(Dart_NativeArguments arguments) {
+	Dart_EnterScope();
+	Dart_SetReturnValue(arguments, Dart_Null());
+	Dart_Port service_port =
+		Dart_NewNativePort("ConnectToBucketService", wrappedConnectToBucket, true);
+	if (service_port != ILLEGAL_PORT) {
+		Dart_Handle send_port = HandleError(Dart_NewSendPort(service_port));
+		Dart_SetReturnValue(arguments, send_port);
+	}
+	Dart_ExitScope();
+}
+
 struct FunctionLookup {
 	const char* name;
 	Dart_NativeFunction function;
@@ -340,34 +472,45 @@ struct FunctionLookup {
 
 
 FunctionLookup function_list[] = {
-	{ "SystemRand", SystemRand },
-	{ "SystemSrand", SystemSrand },
+	// { "SystemRand", SystemRand },
+	// { "SystemSrand", SystemSrand },
 	{ "RandomArray_ServicePort", randomArrayServicePort },
+	{ "InitEventLoop_ServicePort", initEventLoopServicePort },
+    { "ConnectToBucket_ServicePort", connectToBucketServicePort },
 	{ NULL, NULL } };
 
 
 FunctionLookup no_scope_function_list[] = {
-	{ "NoScopeSystemRand", SystemRand },
+	// { "NoScopeSystemRand", SystemRand },
 	{ NULL, NULL }
 };
 
 Dart_NativeFunction ResolveName(Dart_Handle name,
 	int argc,
 	bool* auto_setup_scope) {
+    fflush(stdout);
 	if (!Dart_IsString(name)) {
 		return NULL;
 	}
+    fflush(stdout);
 	Dart_NativeFunction result = NULL;
 	if (auto_setup_scope == NULL) {
 		return NULL;
 	}
+    fflush(stdout);
 
 	Dart_EnterScope();
+    fflush(stdout);
 	const char* cname;
+    fflush(stdout);
 	HandleError(Dart_StringToCString(name, &cname));
+    fflush(stdout);
 
 	for (int i = 0; function_list[i].name != NULL; ++i) {
+//        printf("[%s] function_list\n", function_list[i].name);
+        fflush(stdout);
 		if (strcmp(function_list[i].name, cname) == 0) {
+            fflush(stdout);
 			*auto_setup_scope = true;
 			result = function_list[i].function;
 			break;
@@ -402,4 +545,3 @@ __attribute__((destructor))
 static void finalizer(void) {
 //    printf("[%s] finalizer()\n", __FILE__);
 }
-

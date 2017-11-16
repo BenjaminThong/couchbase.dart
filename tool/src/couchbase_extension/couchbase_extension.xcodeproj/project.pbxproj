@@ -8,11 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		76151EC91FBBFA8400626548 /* couchbase_extension.cc in Sources */ = {isa = PBXBuildFile; fileRef = 76151EC81FBBFA1C00626548 /* couchbase_extension.cc */; };
+		76BE9BDF1FBD687200D79B9C /* libevent_openssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BE9BDA1FBD687200D79B9C /* libevent_openssl.a */; };
+		76BE9BE01FBD687200D79B9C /* libevent_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BE9BDB1FBD687200D79B9C /* libevent_core.a */; };
+		76BE9BE11FBD687200D79B9C /* libevent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BE9BDC1FBD687200D79B9C /* libevent.a */; };
+		76BE9BE21FBD687200D79B9C /* libevent_extra.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BE9BDD1FBD687200D79B9C /* libevent_extra.a */; };
+		76BE9BE31FBD687200D79B9C /* libevent_pthreads.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BE9BDE1FBD687200D79B9C /* libevent_pthreads.a */; };
+		76BE9BEA1FBD72B500D79B9C /* libcouchbase_libevent.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BE9BE71FBD71AE00D79B9C /* libcouchbase_libevent.dylib */; };
+		76BE9BED1FBD72B500D79B9C /* libcouchbaseS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BE9BE51FBD71AE00D79B9C /* libcouchbaseS.a */; };
+		76BE9BEE1FBD72B500D79B9C /* libcouchbase.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BE9BE41FBD71AE00D79B9C /* libcouchbase.2.dylib */; };
+		76BE9BEF1FBD72B500D79B9C /* libcouchbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BE9BE61FBD71AE00D79B9C /* libcouchbase.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		76151EC11FBBF99A00626548 /* libcouchbase_extension.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libcouchbase_extension.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		76151EC81FBBFA1C00626548 /* couchbase_extension.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = couchbase_extension.cc; path = ../couchbase_extension.cc; sourceTree = "<group>"; };
+		76BE9BDA1FBD687200D79B9C /* libevent_openssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libevent_openssl.a; path = ../../../../../../../../usr/local/lib/libevent_openssl.a; sourceTree = "<group>"; };
+		76BE9BDB1FBD687200D79B9C /* libevent_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libevent_core.a; path = ../../../../../../../../usr/local/lib/libevent_core.a; sourceTree = "<group>"; };
+		76BE9BDC1FBD687200D79B9C /* libevent.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libevent.a; path = ../../../../../../../../usr/local/lib/libevent.a; sourceTree = "<group>"; };
+		76BE9BDD1FBD687200D79B9C /* libevent_extra.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libevent_extra.a; path = ../../../../../../../../usr/local/lib/libevent_extra.a; sourceTree = "<group>"; };
+		76BE9BDE1FBD687200D79B9C /* libevent_pthreads.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libevent_pthreads.a; path = ../../../../../../../../usr/local/lib/libevent_pthreads.a; sourceTree = "<group>"; };
+		76BE9BE41FBD71AE00D79B9C /* libcouchbase.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcouchbase.2.dylib; path = ../../build/libcouchbase/build/lib/libcouchbase.2.dylib; sourceTree = "<group>"; };
+		76BE9BE51FBD71AE00D79B9C /* libcouchbaseS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcouchbaseS.a; path = ../../build/libcouchbase/build/lib/libcouchbaseS.a; sourceTree = "<group>"; };
+		76BE9BE61FBD71AE00D79B9C /* libcouchbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcouchbase.dylib; path = ../../build/libcouchbase/build/lib/libcouchbase.dylib; sourceTree = "<group>"; };
+		76BE9BE71FBD71AE00D79B9C /* libcouchbase_libevent.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcouchbase_libevent.dylib; path = ../../build/libcouchbase/build/lib/libcouchbase_libevent.dylib; sourceTree = "<group>"; };
+		76BE9BF01FBD72B500D79B9C /* libcouchbase_libuv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcouchbase_libuv.dylib; path = ../../build/libcouchbase/build/lib/libcouchbase_libuv.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -20,6 +39,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76BE9BEA1FBD72B500D79B9C /* libcouchbase_libevent.dylib in Frameworks */,
+				76BE9BED1FBD72B500D79B9C /* libcouchbaseS.a in Frameworks */,
+				76BE9BEE1FBD72B500D79B9C /* libcouchbase.2.dylib in Frameworks */,
+				76BE9BEF1FBD72B500D79B9C /* libcouchbase.dylib in Frameworks */,
+				76BE9BDF1FBD687200D79B9C /* libevent_openssl.a in Frameworks */,
+				76BE9BE01FBD687200D79B9C /* libevent_core.a in Frameworks */,
+				76BE9BE11FBD687200D79B9C /* libevent.a in Frameworks */,
+				76BE9BE21FBD687200D79B9C /* libevent_extra.a in Frameworks */,
+				76BE9BE31FBD687200D79B9C /* libevent_pthreads.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -31,6 +59,7 @@
 			children = (
 				76151EC21FBBF99A00626548 /* Products */,
 				76151EC81FBBFA1C00626548 /* couchbase_extension.cc */,
+				76BE9BD91FBD687200D79B9C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -40,6 +69,23 @@
 				76151EC11FBBF99A00626548 /* libcouchbase_extension.dylib */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		76BE9BD91FBD687200D79B9C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				76BE9BF01FBD72B500D79B9C /* libcouchbase_libuv.dylib */,
+				76BE9BDB1FBD687200D79B9C /* libevent_core.a */,
+				76BE9BDD1FBD687200D79B9C /* libevent_extra.a */,
+				76BE9BDA1FBD687200D79B9C /* libevent_openssl.a */,
+				76BE9BDE1FBD687200D79B9C /* libevent_pthreads.a */,
+				76BE9BDC1FBD687200D79B9C /* libevent.a */,
+				76BE9BE71FBD71AE00D79B9C /* libcouchbase_libevent.dylib */,
+				76BE9BE41FBD71AE00D79B9C /* libcouchbase.2.dylib */,
+				76BE9BE61FBD71AE00D79B9C /* libcouchbase.dylib */,
+				76BE9BE51FBD71AE00D79B9C /* libcouchbaseS.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -19,8 +19,8 @@ class Bucket {
   
   Bucket({this.name, this.cluster});
 
-  Future<String> n1qlQuery({String query}) {
-    var completer = new Completer();
+  Stream<String> n1qlQuery({String query}) {
+    StreamController<String> controller = new StreamController<String>();
     var replyPort = new RawReceivePort();
     var args = new List(3);
     args[0] = query;
@@ -29,16 +29,18 @@ class Bucket {
     _n1qlQueryServicePort.send(args);
     replyPort.handler = (result) {
       if (result != null) {
-        if (result == 'end') {
-          replyPort.close();
-        } else {
-          completer.complete(result);
-        }
+        controller.add(result);
+        // if (result == 'end') {
+        //   replyPort.close();
+        // } else {
+        //   // completer.complete(result);
+        // }
       } else {
         replyPort.close();
-        completer.completeError(new Exception("Random array creation failed"));
+        controller.close();
+        // completer.completeError(new Exception("Random array creation failed"));
       }
     };
-    return completer.future;
+    return controller.stream;
   }
 }

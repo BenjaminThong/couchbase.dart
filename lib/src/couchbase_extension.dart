@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:isolate';
 import 'dart-ext:couchbase_extension';
-import 'bucket.dart';
 
 final CouchbaseExtension cbx = new CouchbaseExtension._private();
 

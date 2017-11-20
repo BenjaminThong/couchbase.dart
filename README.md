@@ -1,5 +1,5 @@
 # couchbase.dart
-Couchbase client for Google's Dart language via Native Extensions and Couchbase C SDK.
+[Couchbase](https://www.couchbase.com) client for Google's [Dart](dartlang.org) language via [Native Extensions](https://www.dartlang.org/articles/dart-vm/native-extensions) and Couchbase [C Client](https://github.com/couchbase/libcouchbase).
 This is targetted at Dart VM servers that expose domain specific Rest/Swagger/gRPC/GraphQL endpoints for Web/Mobile/Desktop clients
 **STILL IN DEVELOPMENT**
 
@@ -9,3 +9,11 @@ This is targetted at Dart VM servers that expose domain specific Rest/Swagger/gR
 
 # Help Needed
 Drop [Benjamin](mailto:benjaminthong@gmail.com) a mail if you'd like to contribute. He certainly needs a hand :)
+
+# References
+* [Couchbase Asynchronous Programming](https://developer.couchbase.com/documentation/server/current/sdk/c/async-programming.html)
+* [Couchbase C Documentation](https://developer.couchbase.com/documentation/server/5.0/sdk/c/document-operations.html)
+* [Couchbase C Client Doc](http://docs.couchbase.com/sdk-api/couchbase-c-client-2.8.1/index.html)
+* [C Client examples](https://github.com/couchbase/libcouchbase/tree/master/example)
+* [C dev guide examples](https://github.com/couchbaselabs/devguide-examples/tree/master/c)
+* [Couchbase Node.js](http://docs.couchbase.com/sdk-api/couchbase-node-client-2.4.2/)

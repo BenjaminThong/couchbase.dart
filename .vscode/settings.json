@@ -18,6 +18,7 @@
         "memory": "cpp",
         "ratio": "cpp",
         "tuple": "cpp",
-        "type_traits": "cpp"
+        "type_traits": "cpp",
+        "typeinfo": "cpp"
     }
 }

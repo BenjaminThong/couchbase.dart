@@ -16,6 +16,8 @@
 		76BE9BED1FBD72B500D79B9C /* libcouchbaseS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BE9BE51FBD71AE00D79B9C /* libcouchbaseS.a */; };
 		76BE9BEE1FBD72B500D79B9C /* libcouchbase.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BE9BE41FBD71AE00D79B9C /* libcouchbase.2.dylib */; };
 		76BE9BEF1FBD72B500D79B9C /* libcouchbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BE9BE61FBD71AE00D79B9C /* libcouchbase.dylib */; };
+		76C0211F1FC3C89400934AF0 /* random_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 76C0211E1FC3C89400934AF0 /* random_array.cpp */; };
+		76C021221FC3CA4A00934AF0 /* dart_ext_helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 76C021201FC3CA4A00934AF0 /* dart_ext_helper.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,10 @@
 		76BE9BE51FBD71AE00D79B9C /* libcouchbaseS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcouchbaseS.a; path = ../../build/libcouchbase/build/lib/libcouchbaseS.a; sourceTree = "<group>"; };
 		76BE9BE61FBD71AE00D79B9C /* libcouchbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcouchbase.dylib; path = ../../build/libcouchbase/build/lib/libcouchbase.dylib; sourceTree = "<group>"; };
 		76BE9BF01FBD72B500D79B9C /* libcouchbase_libuv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcouchbase_libuv.dylib; path = ../../build/libcouchbase/build/lib/libcouchbase_libuv.dylib; sourceTree = "<group>"; };
+		76C0211D1FC3C85000934AF0 /* random_array.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = random_array.h; path = ../random_array.h; sourceTree = "<group>"; };
+		76C0211E1FC3C89400934AF0 /* random_array.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = random_array.cpp; path = ../random_array.cpp; sourceTree = "<group>"; };
+		76C021201FC3CA4A00934AF0 /* dart_ext_helper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = dart_ext_helper.cpp; path = ../dart_ext_helper.cpp; sourceTree = "<group>"; };
+		76C021211FC3CA4A00934AF0 /* dart_ext_helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = dart_ext_helper.h; path = ../dart_ext_helper.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,10 @@
 			children = (
 				76151EC21FBBF99A00626548 /* Products */,
 				76151EC81FBBFA1C00626548 /* couchbase_extension.cc */,
+				76C0211D1FC3C85000934AF0 /* random_array.h */,
+				76C0211E1FC3C89400934AF0 /* random_array.cpp */,
+				76C021201FC3CA4A00934AF0 /* dart_ext_helper.cpp */,
+				76C021211FC3CA4A00934AF0 /* dart_ext_helper.h */,
 				76BE9BD91FBD687200D79B9C /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -151,7 +161,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76C0211F1FC3C89400934AF0 /* random_array.cpp in Sources */,
 				76151EC91FBBFA8400626548 /* couchbase_extension.cc in Sources */,
+				76C021221FC3CA4A00934AF0 /* dart_ext_helper.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

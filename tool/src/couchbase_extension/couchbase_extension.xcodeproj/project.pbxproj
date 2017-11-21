@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		76151EC91FBBFA8400626548 /* couchbase_extension.cc in Sources */ = {isa = PBXBuildFile; fileRef = 76151EC81FBBFA1C00626548 /* couchbase_extension.cc */; };
+		76765F3F1FC3CF1B00EAAD04 /* cluster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 76765F3D1FC3CF1B00EAAD04 /* cluster.cpp */; };
+		76765F421FC3D7E800EAAD04 /* bucket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 76765F401FC3D7E800EAAD04 /* bucket.cpp */; };
 		76BE9BDF1FBD687200D79B9C /* libevent_openssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BE9BDA1FBD687200D79B9C /* libevent_openssl.a */; };
 		76BE9BE01FBD687200D79B9C /* libevent_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BE9BDB1FBD687200D79B9C /* libevent_core.a */; };
 		76BE9BE11FBD687200D79B9C /* libevent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BE9BDC1FBD687200D79B9C /* libevent.a */; };
@@ -23,6 +25,10 @@
 /* Begin PBXFileReference section */
 		76151EC11FBBF99A00626548 /* libcouchbase_extension.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libcouchbase_extension.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		76151EC81FBBFA1C00626548 /* couchbase_extension.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = couchbase_extension.cc; path = ../couchbase_extension.cc; sourceTree = "<group>"; };
+		76765F3D1FC3CF1B00EAAD04 /* cluster.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = cluster.cpp; path = ../cluster.cpp; sourceTree = "<group>"; };
+		76765F3E1FC3CF1B00EAAD04 /* cluster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cluster.h; path = ../cluster.h; sourceTree = "<group>"; };
+		76765F401FC3D7E800EAAD04 /* bucket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = bucket.cpp; path = ../bucket.cpp; sourceTree = "<group>"; };
+		76765F411FC3D7E800EAAD04 /* bucket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = bucket.h; path = ../bucket.h; sourceTree = "<group>"; };
 		76BE9BDA1FBD687200D79B9C /* libevent_openssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libevent_openssl.a; path = ../../../../../../../../usr/local/lib/libevent_openssl.a; sourceTree = "<group>"; };
 		76BE9BDB1FBD687200D79B9C /* libevent_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libevent_core.a; path = ../../../../../../../../usr/local/lib/libevent_core.a; sourceTree = "<group>"; };
 		76BE9BDC1FBD687200D79B9C /* libevent.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libevent.a; path = ../../../../../../../../usr/local/lib/libevent.a; sourceTree = "<group>"; };
@@ -66,6 +72,10 @@
 				76C0211E1FC3C89400934AF0 /* random_array.cpp */,
 				76C021201FC3CA4A00934AF0 /* dart_ext_helper.cpp */,
 				76C021211FC3CA4A00934AF0 /* dart_ext_helper.h */,
+				76765F3D1FC3CF1B00EAAD04 /* cluster.cpp */,
+				76765F3E1FC3CF1B00EAAD04 /* cluster.h */,
+				76765F401FC3D7E800EAAD04 /* bucket.cpp */,
+				76765F411FC3D7E800EAAD04 /* bucket.h */,
 				76BE9BD91FBD687200D79B9C /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -163,6 +173,8 @@
 			files = (
 				76C0211F1FC3C89400934AF0 /* random_array.cpp in Sources */,
 				76151EC91FBBFA8400626548 /* couchbase_extension.cc in Sources */,
+				76765F421FC3D7E800EAAD04 /* bucket.cpp in Sources */,
+				76765F3F1FC3CF1B00EAAD04 /* cluster.cpp in Sources */,
 				76C021221FC3CA4A00934AF0 /* dart_ext_helper.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

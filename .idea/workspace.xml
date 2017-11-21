@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e028338d-85a3-429b-87a6-0f373928f768" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/libcouchbase_extension.dylib" afterPath="$PROJECT_DIR$/lib/src/libcouchbase_extension.dylib" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tool/src/couchbase_extension/couchbase_extension.xcodeproj/project.xcworkspace/xcuserdata/javed.bilal.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/tool/src/couchbase_extension/couchbase_extension.xcodeproj/project.xcworkspace/xcuserdata/javed.bilal.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tool/src/couchbase_extension.cc" afterPath="$PROJECT_DIR$/tool/src/couchbase_extension.cc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tool/src/couchbase_extension/couchbase_extension.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/tool/src/couchbase_extension/couchbase_extension.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tool/src/dart_ext_helper.cpp" afterPath="$PROJECT_DIR$/tool/src/dart_ext_helper.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tool/src/dart_ext_helper.h" afterPath="$PROJECT_DIR$/tool/src/dart_ext_helper.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pubspec.yaml" afterPath="$PROJECT_DIR$/pubspec.yaml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,11 +27,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="couchbase_extension.cc" pinned="false" current-in-tab="true">
+          <file leaf-file-name="couchbase_extension.cc" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/tool/src/couchbase_extension.cc">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="450">
-                  <caret line="30" column="22" lean-forward="true" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+                <state relative-caret-position="540">
+                  <caret line="36" column="33" lean-forward="true" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="pubspec.yaml" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/pubspec.yaml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="15">
+                  <caret line="1" column="14" lean-forward="false" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
                   <folding />
                 </state>
               </provider>
@@ -153,6 +159,7 @@
         <option value="$PROJECT_DIR$/tool/src/bucket.cpp" />
         <option value="$PROJECT_DIR$/tool/src/bucket.h" />
         <option value="$PROJECT_DIR$/tool/src/couchbase_extension.cc" />
+        <option value="$PROJECT_DIR$/pubspec.yaml" />
       </list>
     </option>
   </component>
@@ -613,8 +620,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tool/src/couchbase_extension.cc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="22" lean-forward="true" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+        <state relative-caret-position="540">
+          <caret line="36" column="33" lean-forward="true" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pubspec.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="14" lean-forward="false" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
           <folding />
         </state>
       </provider>

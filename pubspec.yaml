@@ -1,7 +1,7 @@
 name: couchbase
 version: 0.0.2
 description: >
-  Couchbase C SDK Dart native extension with libevent
+  Couchbase C SDK x Dart Native Extension
 author: Benjamin Thong <BenjaminThong@gmail.com>
 homepage: https://github.com/BenjaminThong/couchbase.dart
 environment:

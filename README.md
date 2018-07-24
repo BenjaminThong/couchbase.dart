@@ -17,3 +17,6 @@ Drop [Benjamin](mailto:benjaminthong@gmail.com) a mail if you'd like to contribu
 * [C Client examples](https://github.com/couchbase/libcouchbase/tree/master/example)
 * [C dev guide examples](https://github.com/couchbaselabs/devguide-examples/tree/master/c)
 * [Couchbase Node.js](http://docs.couchbase.com/sdk-api/couchbase-node-client-2.4.2/)
+* [Dart Sync Socket Native Extension](https://github.com/google/dart-sync-socket)
+* [Barcode Native Extension Windows](https://www.codepool.biz/dart-native-extension-barcode-sdk.html)
+* [Native Extension with Stream](https://stackoverflow.com/questions/24945732/dart-how-to-create-stream-in-native-extension)
